@@ -1,5 +1,5 @@
 
-//********************UPDATED********************************//
+//********************UPDATED */
 var Gantt = (function () {
     'use strict';
 
@@ -1089,6 +1089,7 @@ var Gantt = (function () {
             // wrapper element
             this.$container = document.createElement('div');
             this.$container.classList.add('gantt-container');
+            this.$container.id = "gantt-cont"
 
             const parent_element = this.$svg.parentElement;
             parent_element.appendChild(this.$container);
@@ -1404,13 +1405,19 @@ var Gantt = (function () {
                 });
 
                 row_y += this.options.bar_height + this.options.padding;
+                var grid = document.querySelector('#grid-r');
+                var dragItem = document.querySelector("#grid-background");
+    
+                grid.addEventListener("mousedown", dragStart, false);
+                grid.addEventListener("mouseup", dragEnd, false);
+                grid.addEventListener("mousemove", drag, false);
+                grid.addEventListener("touchstart", dragStart, false);
+                grid.addEventListener("touchend", dragEnd, false);
+                grid.addEventListener("touchmove", drag, false);
             }
             //*********************************************************************************************************************************************** */
             //*********************************************************************************************************************************************** */
             //*********************************************************************************************************************************************** */
-            var grid = document.querySelector('#grid-r');
-            var dragItem = document.querySelector("#grid-background");
-
             var active = false;
             var currentX;
             var currentY;
@@ -1419,12 +1426,6 @@ var Gantt = (function () {
             var xOffset = 0;
             var yOffset = 0;
 
-            grid.addEventListener("mousedown", dragStart, false);
-            grid.addEventListener("mouseup", dragEnd, false);
-            grid.addEventListener("mousemove", drag, false);
-            grid.addEventListener("touchstart", dragStart, false);
-            grid.addEventListener("touchend", dragEnd, false);
-            grid.addEventListener("touchmove", drag, false);
 
             function dragStart(e) {
                 console.log('dragstart ', e)
