@@ -1,5 +1,5 @@
 
-//********************UPDATED******************** */
+//********************UPDATED */
 var Gantt = (function () {
     'use strict';
 
@@ -1396,7 +1396,7 @@ var Gantt = (function () {
                 //*********************************************************************************************************************************************** */
                 //*********************************************************************************************************************************************** */
                 var grid = document.querySelector('#grid-r');
-                var dragItem = document.querySelector("#gantt");
+                var dragItem = document.querySelector("#item");
 
                 var active = false;
                 var currentX;
@@ -1452,7 +1452,7 @@ var Gantt = (function () {
 
                         xOffset = currentX;
                         yOffset = currentY;
-                        console.log(dragItem);
+
                         setTranslate(currentX, currentY, dragItem);
                     }
                 }
