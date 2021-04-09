@@ -1405,9 +1405,8 @@ var Gantt = (function () {
                 });
 
                 row_y += this.options.bar_height + this.options.padding;
-            }
                 var grid = document.querySelector('#grid-r');
-                var dragItem = document.querySelector("#gantt");
+                var dragItem = document.querySelector("#gantt-cont");
     
                 grid.addEventListener("mousedown", dragStart, false);
                 grid.addEventListener("mouseup", dragEnd, false);
@@ -1415,8 +1414,9 @@ var Gantt = (function () {
                 grid.addEventListener("touchstart", dragStart, false);
                 grid.addEventListener("touchend", dragEnd, false);
                 grid.addEventListener("touchmove", drag, false);
+            }
             //*********************************************************************************************************************************************** */
-            //************************************************************************************************************************************************* */
+            //*********************************************************************************************************************************************** */
             //*********************************************************************************************************************************************** */
             var active = false;
             var currentX;
@@ -1466,8 +1466,10 @@ var Gantt = (function () {
 
                     xOffset = currentX;
                     yOffset = currentY;
-
-                    setTranslate(currentX, currentY, dragItem);
+                    console.log(xOffset, yOffset)
+                    // setTranslate(currentX, currentY, dragItem);
+                    let ganttContainer = document.getElementById('gantt-cont');
+                    ganttContainer.scrollBy(xOffset, 0)
                 }
             }
 
