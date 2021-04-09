@@ -1,5 +1,5 @@
 
-//********************UPDATED */
+//********************UPDATED--------  */
 var Gantt = (function () {
     'use strict';
 
