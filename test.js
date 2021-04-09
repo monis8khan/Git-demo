@@ -1,5 +1,5 @@
 
-//********************UPDATED */
+//********************UPDATED********************************//
 var Gantt = (function () {
     'use strict';
 
@@ -1364,6 +1364,7 @@ var Gantt = (function () {
                 width: grid_width,
                 height: grid_height,
                 class: 'grid-background',
+                id: 'grid-background',
                 append_to: this.layers.grid
             });
 
@@ -1392,78 +1393,6 @@ var Gantt = (function () {
                     id: 'grid-r',
                     append_to: rows_layer
                 });
-                //*********************************************************************************************************************************************** */
-                //*********************************************************************************************************************************************** */
-                //*********************************************************************************************************************************************** */
-                var grid = document.querySelector('#grid-r');
-                var dragItem = document.querySelector("#gantt");
-
-                var active = false;
-                var currentX;
-                var currentY;
-                var initialX;
-                var initialY;
-                var xOffset = 0;
-                var yOffset = 0;
-
-                grid.addEventListener("mousedown", dragStart, false);
-                grid.addEventListener("mouseup", dragEnd, false);
-                grid.addEventListener("mousemove", drag, false);
-                grid.addEventListener("touchstart", dragStart, false);
-                grid.addEventListener("touchend", dragEnd, false);
-                grid.addEventListener("touchmove", drag, false);
-
-                function dragStart(e) {
-                    console.log('dragstart ', e)
-                    if (e.type === "touchstart") {
-                        initialX = e.touches[0].clientX - xOffset;
-                        initialY = e.touches[0].clientY - yOffset;
-                    } else {
-                        initialX = e.clientX - xOffset;
-                        initialY = e.clientY - yOffset;
-                    }
-
-                    if (e.target === dragItem) {
-                        active = true;
-                    }
-                }
-
-                function dragEnd(e) {
-                    initialX = currentX;
-                    initialY = currentY;
-                    console.log('drag end', e)
-
-                    active = false;
-                }
-
-                function drag(e) {
-                    console.log('drag')
-                    if (active) {
-
-                        e.preventDefault();
-
-                        if (e.type === "touchmove") {
-                            currentX = e.touches[0].clientX - initialX;
-                            currentY = e.touches[0].clientY - initialY;
-                        } else {
-                            currentX = e.clientX - initialX;
-                            currentY = e.clientY - initialY;
-                        }
-
-                        xOffset = currentX;
-                        yOffset = currentY;
-
-                        setTranslate(currentX, currentY, dragItem);
-                    }
-                }
-
-                function setTranslate(xPos, yPos, el) {
-                    el.style.transform = "translate3d(" + xPos + "px, 0px, 0)";
-                }
-                /************************************************************************************************************** */
-                /************************************************************************************************************** */
-                /************************************************************************************************************** */
-
 
                 createSVG('line', {
                     x1: 0,
@@ -1476,6 +1405,78 @@ var Gantt = (function () {
 
                 row_y += this.options.bar_height + this.options.padding;
             }
+            //*********************************************************************************************************************************************** */
+            //*********************************************************************************************************************************************** */
+            //*********************************************************************************************************************************************** */
+            var grid = document.querySelector('#grid-r');
+            var dragItem = document.querySelector("#grid-background");
+
+            var active = false;
+            var currentX;
+            var currentY;
+            var initialX;
+            var initialY;
+            var xOffset = 0;
+            var yOffset = 0;
+
+            grid.addEventListener("mousedown", dragStart, false);
+            grid.addEventListener("mouseup", dragEnd, false);
+            grid.addEventListener("mousemove", drag, false);
+            grid.addEventListener("touchstart", dragStart, false);
+            grid.addEventListener("touchend", dragEnd, false);
+            grid.addEventListener("touchmove", drag, false);
+
+            function dragStart(e) {
+                console.log('dragstart ', e)
+                if (e.type === "touchstart") {
+                    initialX = e.touches[0].clientX - xOffset;
+                    initialY = e.touches[0].clientY - yOffset;
+                } else {
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
+                }
+
+                if (e.target === dragItem) {
+                    active = true;
+                }
+            }
+
+            function dragEnd(e) {
+                initialX = currentX;
+                initialY = currentY;
+                console.log('drag end', e)
+
+                active = false;
+            }
+
+            function drag(e) {
+                console.log('drag')
+                if (active) {
+
+                    e.preventDefault();
+
+                    if (e.type === "touchmove") {
+                        currentX = e.touches[0].clientX - initialX;
+                        currentY = e.touches[0].clientY - initialY;
+                    } else {
+                        currentX = e.clientX - initialX;
+                        currentY = e.clientY - initialY;
+                    }
+
+                    xOffset = currentX;
+                    yOffset = currentY;
+
+                    setTranslate(currentX, currentY, dragItem);
+                }
+            }
+
+            function setTranslate(xPos, yPos, el) {
+                el.style.transform = "translate3d(" + xPos + "px, 0px, 0)";
+            }
+            /************************************************************************************************************** */
+            /************************************************************************************************************** */
+            /************************************************************************************************************** */
+
         }
 
         make_grid_header() {
