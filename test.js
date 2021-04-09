@@ -1409,7 +1409,12 @@ var Gantt = (function () {
                 grid.addEventListener("mousedown", dragStart, false);
                 grid.addEventListener("mouseup", dragEnd, false);
                 grid.addEventListener("mousemove", drag, false);
+                grid.addEventListener("touchstart", dragStart, false);
+                grid.addEventListener("touchend", dragEnd, false);
+                grid.addEventListener("touchmove", drag, false);
+
                 function dragStart(e) {
+                    console.log('dragstart ', e)
                     if (e.type === "touchstart") {
                         initialX = e.touches[0].clientX - xOffset;
                         initialY = e.touches[0].clientY - yOffset;
@@ -1426,11 +1431,13 @@ var Gantt = (function () {
                 function dragEnd(e) {
                     initialX = currentX;
                     initialY = currentY;
+                    console.log('drag end', e)
 
                     active = false;
                 }
 
                 function drag(e) {
+                    console.log('drag')
                     if (active) {
 
                         e.preventDefault();
