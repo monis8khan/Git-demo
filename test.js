@@ -1405,8 +1405,9 @@ var Gantt = (function () {
                 });
 
                 row_y += this.options.bar_height + this.options.padding;
+            }
                 var grid = document.querySelector('#grid-r');
-                var dragItem = document.querySelector("#gantt-cont");
+                var dragItem = document.querySelector("#gantt");
     
                 grid.addEventListener("mousedown", dragStart, false);
                 grid.addEventListener("mouseup", dragEnd, false);
@@ -1414,7 +1415,6 @@ var Gantt = (function () {
                 grid.addEventListener("touchstart", dragStart, false);
                 grid.addEventListener("touchend", dragEnd, false);
                 grid.addEventListener("touchmove", drag, false);
-            }
             //*********************************************************************************************************************************************** */
             //*********************************************************************************************************************************************** */
             //*********************************************************************************************************************************************** */
